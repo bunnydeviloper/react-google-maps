@@ -23,7 +23,7 @@ const Header = ({ siteTitle }) => (
             textDecoration: 'none',
           }}
         >
-          {siteTitle}
+          React Neighborhood Map Project
         </Link>
       </h1>
     </div>
