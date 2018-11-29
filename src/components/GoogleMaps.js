@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { Map, InfoWindow,  GoogleApiWrapper } from 'google-maps-react';
 
 const MAP_KEY = "AIzaSyCzZvujlnTYKZGkoiQTbFV1Ghr7yM14IEA";
 
@@ -50,8 +50,15 @@ export class MapDisplay extends Component {
     this.setState({ markers, markerProps });
   }
 
-  onMapClicked = (mapProps, map, clickEvent) => {
-    console.log('map was clicked');
+  onMarkerClicked = (props, marker, e) => {
+    this.closeInfoWindow();
+    this.setState({ showingInfoWindow: true, activeMarker: marker, activeMarkerProps: props });
+  }
+
+  closeInfoWindow = () => {
+    // disable any active marker animation
+    this.state.activeMarker && this.state.activeMarker.setAnimation(null);
+    this.setState({ showingInfoWindow: false, activeMarker: null, activeMarkerProps: null });
   }
 
   render() {
@@ -63,6 +70,7 @@ export class MapDisplay extends Component {
       lat: this.props.lat,
       lng: this.props.lng
     }
+    let amProps = this.state.activeMarkerProps; // active marker props
 
     return (
       <Map
@@ -75,7 +83,19 @@ export class MapDisplay extends Component {
         initialCenter={center}
         onClick={this.closeInfoWindow}
       >
-      </Map>
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+          onClose={this.closeInfoWindow}
+        >
+          <div>
+            <h3>{amProps && amProps.name}</h3>
+            {amProps && amProps.url
+                ? ( <a href={amProps.url}>See Website</a> )
+                : ""}
+              </div>
+            </InfoWindow>
+          </Map>
     );
   }
 }
