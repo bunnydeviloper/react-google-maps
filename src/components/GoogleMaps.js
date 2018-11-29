@@ -67,6 +67,14 @@ export class MapDisplay extends Component {
     this.closeInfoWindow();
 
     let url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=12efbb7f2a30953c5dbc9503f9efd556&tags=&text=the+space+needle&sort=interestingness-desc&safe_search=1&content_type=1&per_page=20&page=1&format=json&nojsoncallback=1&auth_token=72157674008717587-f0a5a7f8fcb4b480&api_sig=d4ff9378f5cbdd99d1a18e1860af10c9";
+    /* developer note:
+     * I really tried to use flickr API instead of the usual foursquare in tutorial
+     * but I can't get the authorization to work
+     * The above link is generated with flickr's developer interactive app,
+     * which change signature everytime a new query/get request is made to their server
+     * This needs more time to investigate, but i'm in a time crunch to submit my project
+     * Hence, will update flickr branch when I have a chance
+     */
 
     fetch(url)
       .then(response => response.json())
