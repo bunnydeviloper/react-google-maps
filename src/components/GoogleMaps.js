@@ -42,7 +42,7 @@ export class MapDisplay extends Component {
         animation: this.props.google.maps.Animation.DROP
       });
       marker.addListener('click', () => {
-        this.onMarkerClick(mProps, marker, null);
+        this.onMarkerClicked(mProps, marker, null);
       });
       return marker;
     });
