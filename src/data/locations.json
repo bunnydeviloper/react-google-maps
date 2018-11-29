@@ -6,7 +6,34 @@
     "state": "WA",
     "zip": "98109",
     "url": "http://www.spaceneedle.com/",
-    "pos": {"lat":47.6205063,"lng":-122.3514661}
+    "pos": {"lat":47.620673,"lng":-122.349234}
+  },
+  {
+    "name": "Lake Union Park",
+    "street": "860 Terry Ave N",
+    "city": "Seatle",
+    "state": "WA",
+    "zip": "98109",
+    "url": "http://www.seatle.gov",
+    "pos": {"lat":47.627089,"lng":-122.337119}
+  },
+  {
+    "name": "Seatle Japanese Garden",
+    "street": "1075 Lake Washington Blvd E",
+    "city": "Seatle",
+    "state": "WA",
+    "zip": "98112",
+    "url": "http://www.seatlejapanesegarden.org",
+    "pos": {"lat":47.629138,"lng":-122.296605}
+  },
+  {
+    "name": "Starbucks Reserve Roastery",
+    "street": "1124 Pike St",
+    "city": "Seatle",
+    "state": "WA",
+    "zip": "98101",
+    "url": "http://www.starbucksreserve.com",
+    "pos": {"lat":47.614042, "lng":-122.328249}
   },
   {
     "name": "Pike Place Market",
@@ -15,6 +42,6 @@
     "state": "WA",
     "zip": "98101",
     "url": "http://www.pikeplacemarket.org",
-    "pos": {"lat":47.6097199,"lng":-122.3465703}
+    "pos": {"lat":47.609590,"lng":-122.341420}
   }
 ]
