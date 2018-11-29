@@ -61,12 +61,13 @@ export class MapDisplay extends Component {
   onMarkerClicked = (props, marker, e) => {
     this.closeInfoWindow();
 
-    let url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=12efbb7f2a30953c5dbc9503f9efd556&tags=&text=the+space+needle&sort=interestingness-desc&safe_search=1&content_type=1&per_page=2&page=1&format=rest&auth_token=72157674008717587-f0a5a7f8fcb4b480&api_sig=c7b2157b2239046389aea533781a8f65";
-    let headers = new Headers();
-    let request = new Request((url, {
-      method: "GET",
-      headers
-    }));
+    let url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=12efbb7f2a30953c5dbc9503f9efd556&tags=&text=the+space+needle&sort=interestingness-desc&safe_search=1&content_type=1&per_page=2&page=1&format=json&nojsoncallback=1&auth_token=72157674008717587-f0a5a7f8fcb4b480&api_sig=8753159b2edb31437ab61727f0bb200d";
+
+    fetch(url)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+      })
 
     this.setState({ showingInfoWindow: true, activeMarker: marker, activeMarkerProps: props });
   }
