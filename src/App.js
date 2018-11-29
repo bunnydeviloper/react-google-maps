@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import locations from './locations';
+import locations from './data/locations';
 
 import GoogleMaps from './components/GoogleMaps';
 
@@ -18,15 +18,14 @@ class App extends Component {
         <h1>
           React Neighborhood Map Project
         </h1>
-        <GoogleMaps />
-        <GoogleMaps
-          let={this.state.lat}
-          lng={this.state.lng}
-          zoom={this.state.zoom}
-          locations={this.state.allLocations}
-        />
+        <div> TODO: create SidePanel component here </div>
         <div>
-          TODO: create SidePanel component here
+          <GoogleMaps
+            lat={this.state.lat}
+            lng={this.state.lng}
+            zoom={this.state.zoom}
+            locations={this.state.allLocations}
+          />
         </div>
       </div>
     );
