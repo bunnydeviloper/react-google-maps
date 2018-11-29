@@ -58,15 +58,23 @@ export class MapDisplay extends Component {
     this.setState({ markers, markerProps });
   }
 
+  getBusinessInfo = (props, data) => {
+    // filter the data result from flickr to make sure it matches our location's name
+    return data.photos.photo.filter(img => img.title.includes(props.name) || props.name.includes(img.title));
+  }
+
   onMarkerClicked = (props, marker, e) => {
     this.closeInfoWindow();
 
-    let url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=12efbb7f2a30953c5dbc9503f9efd556&tags=&text=the+space+needle&sort=interestingness-desc&safe_search=1&content_type=1&per_page=2&page=1&format=json&nojsoncallback=1&auth_token=72157674008717587-f0a5a7f8fcb4b480&api_sig=8753159b2edb31437ab61727f0bb200d";
+    let url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=12efbb7f2a30953c5dbc9503f9efd556&tags=&text=the+space+needle&sort=interestingness-desc&safe_search=1&content_type=1&per_page=20&page=1&format=json&nojsoncallback=1&auth_token=72157674008717587-f0a5a7f8fcb4b480&api_sig=d4ff9378f5cbdd99d1a18e1860af10c9";
 
     fetch(url)
       .then(response => response.json())
       .then(result => {
         console.log(result);
+
+        let attractionLoc = this.getBusinessInfo(props, result);
+        console.log('attractions: ', attractionLoc);
       })
 
     this.setState({ showingInfoWindow: true, activeMarker: marker, activeMarkerProps: props });
