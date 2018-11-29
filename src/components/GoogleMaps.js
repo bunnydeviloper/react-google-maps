@@ -41,7 +41,15 @@ export class MapDisplay extends Component {
         map: this.state.map,
         animation: this.props.google.maps.Animation.DROP
       });
+      const toggleBounce = () => {
+        if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
+        }
+      }
       marker.addListener('click', () => {
+        toggleBounce();
         this.onMarkerClicked(mProps, marker, null);
       });
       return marker;
