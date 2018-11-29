@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Map, InfoWindow,  GoogleApiWrapper } from 'google-maps-react';
 
 const MAP_KEY = "AIzaSyCzZvujlnTYKZGkoiQTbFV1Ghr7yM14IEA";
+const FS_VERSION = "20181128";
+const FS_CLIENT_ID = "VKIWAKGQ2NHXSEZBFKIK5E0VNZTRJKGW14MD21SNE2BZFYGH";
+const FS_SECRET = "HZCUYWHRO1GYI3X1SQ5OAD2YYBM1FUKTZU1RUX4JPENRDPEB";
 
 export class MapDisplay extends Component {
   state = {
@@ -59,24 +62,20 @@ export class MapDisplay extends Component {
   }
 
   getBusinessInfo = (props, data) => {
-    // filter the data result from flickr to make sure it matches our location's name
-    return data.photos.photo.filter(img => img.title.includes(props.name) || props.name.includes(img.title));
+    // filter the data result from foursquare fetch fn to make sure it matches our location's data
+    return data.response.venues.filter(item => item.name.includes(props.name) || props.name.includes(item.name));
   }
 
   onMarkerClicked = (props, marker, e) => {
     this.closeInfoWindow();
 
-    let url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=12efbb7f2a30953c5dbc9503f9efd556&tags=&text=the+space+needle&sort=interestingness-desc&safe_search=1&content_type=1&per_page=20&page=1&format=json&nojsoncallback=1&auth_token=72157674008717587-f0a5a7f8fcb4b480&api_sig=d4ff9378f5cbdd99d1a18e1860af10c9";
-    /* developer note:
-     * I really tried to use flickr API instead of the usual foursquare in tutorial
-     * but I can't get the authorization to work
-     * The above link is generated with flickr's developer interactive app,
-     * which change signature everytime a new query/get request is made to their server
-     * This needs more time to investigate, but i'm in a time crunch to submit my project
-     * Hence, will update flickr branch when I have a chance
-     */
+    let url = `https://api.foursquare.com/v2/venues/search?client_id=${FS_CLIENT_ID}
+      &client_secret=${FS_SECRET}&v=${FS_VERSION}&radius=100&ll=${props.position.lat},
+      ${props.position.lng}&llAcc=100`;
+    let headers = new Headers();
+    let request = new Request(url, { method: 'GET', headers });
 
-    fetch(url)
+    fetch(request)
       .then(response => response.json())
       .then(result => {
         console.log(result);
