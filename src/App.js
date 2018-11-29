@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
 import './App.css';
+import locations from './locations';
 
-import GoogleApiWrapper from './components/GoogleMaps';
+import GoogleMaps from './components/GoogleMaps';
 
 class App extends Component {
+  state = {
+    lat: 47.6205063,
+    lng: -122.3514661,
+    zoom: 10,
+    allLocaions: locations
+  }
+
   render() {
     return (
       <div className="App">
-        <div>
-          TODO: create NavBar component here
-        </div>
-        <GoogleApiWrapper />
+        <h1>
+          React Neighborhood Map Project
+        </h1>
+        <GoogleMaps />
+        <GoogleMaps
+          let={this.state.lat}
+          lng={this.state.lng}
+          zoom={this.state.zoom}
+          locations={this.state.allLocations}
+        />
         <div>
           TODO: create SidePanel component here
         </div>
