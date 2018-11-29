@@ -35,6 +35,10 @@ export default class SidePanel extends Component {
     }
   }
 
+  updateQuery = (newQuery) => {
+    this.setState({ query: newQuery });
+  }
+
   render() {
     return ( <h1>Hello from Side Panel</h1>)
   }
