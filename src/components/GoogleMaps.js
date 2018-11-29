@@ -137,13 +137,26 @@ export class MapDisplay extends Component {
           onClose={this.closeInfoWindow}
         >
           <div>
-            <h3>{amProps && amProps.name}</h3>
             {amProps && amProps.url
-                ? ( <a href={amProps.url}>See Website</a> )
-                : ""}
-              </div>
-            </InfoWindow>
-          </Map>
+                ? (
+                  <div>
+                    <a href={amProps.url}><h3>{amProps.name}</h3></a>
+                  </div>
+                )
+                : <h3>{amProps && amProps.name}</h3> }
+                {amProps && amProps.images
+                    ? (
+                      <div>
+                        <img
+                          alt={amProps.name + " picture"}
+                          src={amProps.images.items[0].prefix + "80x80" + amProps.images.items[0].suffix}/>
+                        <p>Image from Foursquare</p>
+                      </div>
+                    )
+                    : "" }
+                  </div>
+                </InfoWindow>
+              </Map>
     );
   }
 }
