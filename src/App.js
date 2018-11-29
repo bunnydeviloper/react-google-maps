@@ -14,7 +14,7 @@ class App extends Component {
     open: false
   }
 
-  style = {
+  styles = {
     menuButton: {
       marginLeft: 10,
       marginRight: 20,
@@ -33,15 +33,18 @@ class App extends Component {
   }
 
   toggleSidePanel = () => {
+    this.setState({ open: !this.state.open });
   }
 
   render() {
     return (
       <div className="App">
-        <h1>
-          React Neighborhood Map Project
-        </h1>
-        <div> TODO: create SidePanel component here </div>
+	<div>
+	  <button onClick={this.toggleSidePanel} style={this.styles.menuButton}>
+	    <i className="fa fa-bars"></i>
+	  </button>
+	  <h1>React Neighborhood Map Project</h1>
+	</div>
         <div>
           <GoogleMaps
             lat={this.state.lat}
