@@ -67,16 +67,40 @@ export class MapDisplay extends Component {
     let headers = new Headers();
     let request = new Request(url, { method: 'GET', headers });
 
+    let activeMarkerProps;
     fetch(request)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
-
         let attractionLoc = this.getBusinessInfo(props, result);
-        console.log('attractions: ', attractionLoc);
-      })
+        activeMarkerProps = {
+          ...props,
+          foursquare: attractionLoc[0]
+        };
 
-    this.setState({ showingInfoWindow: true, activeMarker: marker, activeMarkerProps: props });
+        // get image of location from the initial foursquare fetch request above
+        if (activeMarkerProps.foursquare) {
+          let url = `https://api.foursquare.com/v2/venues/${attractionLoc[0].id}/photos?client_id=
+            ${FS_CLIENT_ID}&client_secret=${FS_SECRET}&v=${FS_VERSION}`;
+          fetch(url)
+            .then(response => response.json())
+            .then(result => {
+              activeMarkerProps = {
+                ...activeMarkerProps,
+                images: result.response.photos
+              }
+              console.log(activeMarkerProps);
+
+              if (this.state.activeMarker) this.state.activeMarker.setAnimation(null);
+              marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
+              // const img = "https://3.bp.blogspot.com/-S9XfyKnuKms/WNnrWwV-YZI/AAAAAAAADUs/L3m49TTbPYElBrBSbj4wXxv0sSazxtbggCLcB/s1600/sticker1.png";
+              // activeMarkerProps.icon = img;
+              this.setState({ showingInfoWindow: true, activeMarker: marker, activeMarkerProps });
+            })
+        } else {
+          marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
+          this.setState({ showingInfoWindow: true, activeMarker: marker, activeMarkerProps });
+        }
+      })
   }
 
   closeInfoWindow = () => {
