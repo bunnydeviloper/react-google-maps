@@ -3,7 +3,7 @@ import './App.css';
 import locations from './data/locations';
 
 import GoogleMaps from './components/GoogleMaps';
-// import SidePanel from './components/SidePanel';
+import SidePanel from './components/SidePanel';
 
 class App extends Component {
   state = {
@@ -45,14 +45,17 @@ class App extends Component {
 	  </button>
 	  <h1>React Neighborhood Map Project</h1>
 	</div>
-        <div>
           <GoogleMaps
             lat={this.state.lat}
             lng={this.state.lng}
             zoom={this.state.zoom}
             locations={this.state.allLocations}
           />
-        </div>
+	  <SidePanel
+	    locations={this.state.allLocations}
+	    open={this.state.open}
+	    toggleSidePanel={this.toggleSidePanel}
+	  />
       </div>
     );
   }
