@@ -1,0 +1,20 @@
+[
+  {
+    "name": "The Space Needle",
+    "street": "400 Broad St",
+    "city": "Seatle",
+    "state": "WA",
+    "zip": "98109",
+    "url": "http://www.spaceneedle.com/",
+    "pos": {"lat":47.6205063,"lng":-122.3514661}
+  },
+  {
+    "name": "Pike Place Market",
+    "street": "85 Pike St",
+    "city": "Seatle",
+    "state": "WA",
+    "zip": "98101",
+    "url": "http://www.pikeplacemarket.org",
+    "pos": {"lat":47.6097199,"lng":-122.3465703}
+  }
+]
