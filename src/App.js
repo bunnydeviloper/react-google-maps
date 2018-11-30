@@ -56,27 +56,33 @@ class App extends Component {
     });
   }
 
+  clickListItem = (index) => {
+    this.setState({ selectedIndex: index, open: !this.state.open })
+  }
+
   render() {
     return (
       <div className="App">
-	<div>
-	  <button onClick={this.toggleSidePanel} style={this.styles.menuButton}>
-	    <i className="fa fa-bars"></i>
-	  </button>
-	  <h1>React Neighborhood Map Project</h1>
-	</div>
-          <GoogleMaps
-            lat={this.state.lat}
-            lng={this.state.lng}
-            zoom={this.state.zoom}
-            locations={this.state.filtered}
-          />
-	  <SidePanel
-	    locations={this.state.filtered}
-	    open={this.state.open}
-	    toggleSidePanel={this.toggleSidePanel}
-	    onChangeNewQuery={this.updateQuery}
-	  />
+        <div>
+          <button onClick={this.toggleSidePanel} style={this.styles.menuButton}>
+            <i className="fa fa-bars"></i>
+          </button>
+          <h1>React Neighborhood Map Project</h1>
+        </div>
+        <GoogleMaps
+          lat={this.state.lat}
+          lng={this.state.lng}
+          zoom={this.state.zoom}
+          locations={this.state.filtered}
+          selectedIndex={this.state.selectedIndex}
+          clickListItem={this.clickListItem}
+        />
+        <SidePanel
+          locations={this.state.filtered}
+          open={this.state.open}
+          toggleSidePanel={this.toggleSidePanel}
+          onChangeNewQuery={this.updateQuery}
+        />
       </div>
     );
   }
