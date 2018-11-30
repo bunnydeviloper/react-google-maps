@@ -63,12 +63,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
-          <button onClick={this.toggleSidePanel} style={this.styles.menuButton}>
+        <header>
+          <button onClick={this.toggleSidePanel} style={this.styles.menuButton} aria-label="toggle side panel">
             <i className="fa fa-bars"></i>
           </button>
           <h1>React Neighborhood Map Project</h1>
-        </div>
+        </header>
         <GoogleMaps
           lat={this.state.lat}
           lng={this.state.lng}
