@@ -35,7 +35,7 @@
     ├── App.js
     ├── App.test.js
     ├── index.css
-    └── index.js
+    ├── index.js
     └── serviceWorker.js
 ```
 
