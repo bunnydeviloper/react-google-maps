@@ -37,6 +37,7 @@ export default class SidePanel extends Component {
 
   updateQuery = (newQuery) => {
     this.setState({ query: newQuery });
+    this.props.onChangeNewQuery(newQuery);
   }
 
   render() {

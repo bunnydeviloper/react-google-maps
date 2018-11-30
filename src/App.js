@@ -52,7 +52,7 @@ class App extends Component {
     this.setState({
       ...this.state,
       selectedIndex: null,
-      filtered: this.filterLocation(this.state.all, query)
+      filtered: this.filterLocations(this.state.allLocations, query)
     });
   }
 
@@ -75,7 +75,7 @@ class App extends Component {
 	    locations={this.state.filtered}
 	    open={this.state.open}
 	    toggleSidePanel={this.toggleSidePanel}
-	    filterLocations={this.updateQuery}
+	    onChangeNewQuery={this.updateQuery}
 	  />
       </div>
     );
