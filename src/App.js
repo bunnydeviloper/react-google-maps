@@ -11,7 +11,8 @@ class App extends Component {
     lng: -122.3514661,
     zoom: 13,
     allLocations: locations,
-    open: false
+    open: false,
+    filtered: null
   }
 
   styles = {
@@ -32,8 +33,27 @@ class App extends Component {
     }
   }
 
+  componentDidMount = () => {
+    this.setState({
+      ...this.state,
+      filtered: this.filterLocations(this.state.allLocations, "")
+    });
+  }
+
   toggleSidePanel = () => {
     this.setState({ open: !this.state.open });
+  }
+
+  filterLocations = (locations, query) => {
+    return locations.filter(eachLoc => eachLoc.name.toLowerCase().includes(query.toLowerCase()));
+  }
+
+  updateQuery = (query) => {
+    this.setState({
+      ...this.state,
+      selectedIndex: null,
+      filtered: this.filterLocation(this.state.all, query)
+    });
   }
 
   render() {
@@ -49,12 +69,13 @@ class App extends Component {
             lat={this.state.lat}
             lng={this.state.lng}
             zoom={this.state.zoom}
-            locations={this.state.allLocations}
+            locations={this.state.filtered}
           />
 	  <SidePanel
-	    locations={this.state.allLocations}
+	    locations={this.state.filtered}
 	    open={this.state.open}
 	    toggleSidePanel={this.toggleSidePanel}
+	    filterLocations={this.updateQuery}
 	  />
       </div>
     );
