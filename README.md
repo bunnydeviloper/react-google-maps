@@ -1,12 +1,12 @@
 # Udacity Final Project (React): Google Maps API and Foursquare API
 
-### [Deployed via Netlify](https://react-google-maps.netlify.com/)
-* Project [Rubics](https://review.udacity.com/#!/rubrics/1351/view)
+### [See Demo](https://react-google-maps.netlify.com/)
 
-<img src="/src/assets/screenshot.png" width="300px">
-<img src="/src/assets/screenshot2.png" width="300px">
+<img src="/src/assets/screenshot.png" width="400px">
+<img src="/src/assets/screenshot2.png" width="400px">
 
 ## Features
+* Project [Rubics](https://review.udacity.com/#!/rubrics/1351/view)
 * Full display of Google Maps with 5 default Markers of interesting places around Seatle
 * User has the ability to click on a marker and see related image from Foursquare API
 * User also has the ability to click on the name of the location and go to its external website
