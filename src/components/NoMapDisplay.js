@@ -25,11 +25,11 @@ export default class NoMapDisplay extends Component {
         {this.state.show
             ? (
               <div>
-                <h1>Error loading map</h1>
-                <p>Could not load map control due to a network error.Try again when you 're online.</p>
+                <h3>Error loading map</h3>
+                <p>Check your internet connection!</p>
               </div>
             )
-            : (<div><h1>Loading... </h1></div>)
+            : (<div><h3>Loading... </h3></div>)
         } </div>
     )
   }
