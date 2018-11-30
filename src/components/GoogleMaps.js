@@ -135,7 +135,7 @@ export class MapDisplay extends Component {
   render() {
     const style = {
       width: '100%',
-      height: '100%'
+      height: '80%'
     }
     const center = {
       lat: this.props.lat,
