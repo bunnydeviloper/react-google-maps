@@ -18,6 +18,26 @@ export class MapDisplay extends Component {
 
   componentDidMount = () => {}
 
+  componentWillReceiveProps = (props) => {
+    this.setState({ firstDrop: false });
+
+    // update markers according to search filtered result
+    if (this.state.markers.length !== props.locations.length) {
+      this.closeInfoWindow();
+      this.updateMarkers(props.locations);
+      this.setState({ activeMarker: null });
+      return;
+    }
+    // if the selected item is not the same as the active marker, close the info window
+    if (!props.selectedIndex || (this.state.activeMarker &&
+      (this.state.markers[props.selectedIndex] !== this.state.activeMarker))) {
+      this.closeInfoWindow();
+    }
+    if (props.selectedIndex === null) {
+      return;
+    };
+  }
+
   onMapReady = (props, map) => {
     this.setState({ map });
     this.updateMarkers(this.props.locations);
@@ -42,7 +62,7 @@ export class MapDisplay extends Component {
       let marker = new this.props.google.maps.Marker({
         position: eachLocation.pos,
         map: this.state.map,
-        animation: this.props.google.maps.Animation.DROP
+        animation: this.state.firstDrop ? this.props.google.maps.Animation.DROP : null
       });
       marker.addListener('click', () => {
         this.onMarkerClicked(mProps, marker, null);
@@ -88,7 +108,6 @@ export class MapDisplay extends Component {
                 ...activeMarkerProps,
                 images: result.response.photos
               }
-              console.log(activeMarkerProps);
 
               if (this.state.activeMarker) this.state.activeMarker.setAnimation(null);
               marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
