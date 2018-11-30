@@ -116,21 +116,27 @@ export class MapDisplay extends Component {
           let url = `https://api.foursquare.com/v2/venues/${attractionLoc[0].id}/photos?client_id=
             ${FS_CLIENT_ID}&client_secret=${FS_SECRET}&v=${FS_VERSION}`;
           fetch(url)
-            .then(response => response.json())
+            .then(response => {
+	      if (response.status === 200) return response.json();
+	      else return { error: 'There was an error with FourSquare photos request.'};
+	      })
             .then(result => {
-              activeMarkerProps = {
-                ...activeMarkerProps,
-                images: result.response.photos
-              }
+	      if (result.error) window.alert(result.error);
+	      else {
+                activeMarkerProps = {
+                  ...activeMarkerProps,
+                  images: result.response.photos
+                }
 
-              if (this.state.activeMarker) this.state.activeMarker.setAnimation(null);
-              marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
-              // const img = "https://3.bp.blogspot.com/-S9XfyKnuKms/WNnrWwV-YZI/AAAAAAAADUs/L3m49TTbPYElBrBSbj4wXxv0sSazxtbggCLcB/s1600/sticker1.png";
-              // activeMarkerProps.icon = img;
-              this.setState({ showingInfoWindow: true, activeMarker: marker, activeMarkerProps });
+                if (this.state.activeMarker) this.state.activeMarker.setAnimation(null);
+                marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
+                // const img = "https://3.bp.blogspot.com/-S9XfyKnuKms/WNnrWwV-YZI/AAAAAAAADUs/L3m49TTbPYElBrBSbj4wXxv0sSazxtbggCLcB/s1600/sticker1.png";
+                // activeMarkerProps.icon = img;
+                this.setState({ showingInfoWindow: true, activeMarker: marker, activeMarkerProps });
+	      }
             })
 	    .catch(error => {
-	      window.alert(error + '. Cannot get photos from Foursquare.');
+	      window.alert(error);
 	    });
         } else {
           marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
