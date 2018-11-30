@@ -17,6 +17,28 @@
 * Fully responsive design
 * PWA offline usage with service workers
 
+## Files structures
+```bash
+├── README.md
+├── package.json # npm package manager file
+├── public
+│   ├── favicon.ico
+│   └── index.html
+└── src
+    ├── assets # folder for images, screenshots
+    ├── components
+    │   ├── GoogleMaps.js
+    │   ├── NoMapDisplay.js
+    │   ├── SidePanel.js
+    ├── data # default list of locations
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── index.css
+    └── index.js
+    └── serviceWorker.js
+```
+
 ## How to run the app in development mode
 * Clone the repo
 * `npm install`
@@ -28,11 +50,14 @@
 * `npm run serve`
 * Open [http://localhost:5000](http://localhost:3000) to view it in the browser.
 
-## Credits
-* Project Coach [Doug Brown](https://github.com/thefinitemonkey/fend-maps-walkthrough)
+## Dependencies
 * Google Font API - Roboto
 * Font Awesome for the hamburger icon
 * React Material-UI for the Drawer
 * `google-maps-react` external library
 * `@material-ui/core` external library
+
+## Credits and References
+* Project Coach [Doug Brown](https://github.com/thefinitemonkey/fend-maps-walkthrough)
 * Bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+
