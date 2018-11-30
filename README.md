@@ -3,8 +3,8 @@
 
 ### [See Demo](https://react-google-maps.netlify.com/)
 
-<img src="/src/assets/screenshot.png" width="400px">
-<img src="/src/assets/screenshot2.png" width="400px">
+<img src="/src/assets/screenshot.png" width="400px" border="3">
+<img src="/src/assets/screenshot2.png" width="400px" border="3">
 
 ## Features
 * Project [Rubics](https://review.udacity.com/#!/rubrics/1351/view)
@@ -24,10 +24,16 @@
 * Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## How to run the app in production mode
-* 'npm build'
 * `serve -s build`
 * `npm run serve`
 * Open [http://localhost:5000](http://localhost:3000) to view it in the browser.
+
+#### Deploy via Github pages:
+* `npm install gh-pages --save-dev`
+* In package.json, add:
+  * `"homepage": "http://gitname.github.io/react-gh-pages"`
+  * `"scripts": { /*...*/, "predeploy": "npm run build", "deploy": "gh-pages -d build" }`
+* `npm run deploy`
 
 ## Credits
 * Project Coach [Doug Brown](https://github.com/thefinitemonkey/fend-maps-walkthrough)
