@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, InfoWindow,  GoogleApiWrapper } from 'google-maps-react';
-import NoMapDisplay from './NoMapDisplay';
+// import NoMapDisplay from './NoMapDisplay';
 
 const MAP_KEY = "AIzaSyCzZvujlnTYKZGkoiQTbFV1Ghr7yM14IEA";
 const FS_VERSION = "20181128";
@@ -22,6 +22,10 @@ export class MapDisplay extends Component {
   }
 
   componentDidMount = () => {
+    window.addEventListener("unhandledrejection", function (event) {
+      console.log(event.reason);
+      event.preventDefault();
+    })
     window.gm_authFailure = () => this.gm_authFailure();
   }
 
@@ -125,11 +129,17 @@ export class MapDisplay extends Component {
               // activeMarkerProps.icon = img;
               this.setState({ showingInfoWindow: true, activeMarker: marker, activeMarkerProps });
             })
+	    .catch(error => {
+	      window.alert(error + '. Cannot get photos from Foursquare.');
+	    });
         } else {
           marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
           this.setState({ showingInfoWindow: true, activeMarker: marker, activeMarkerProps });
         }
       })
+      .catch(error => {
+	window.alert(error + '. Please check Foursquare authentication.');
+      });
   }
 
   closeInfoWindow = () => {
@@ -190,6 +200,6 @@ export class MapDisplay extends Component {
   }
 }
 
-export default GoogleApiWrapper({ apiKey: MAP_KEY, LoadingContainer: NoMapDisplay })(MapDisplay)
+export default GoogleApiWrapper({ apiKey: MAP_KEY /*, LoadingContainer: NoMapDisplay*/ })(MapDisplay)
 
 // credit: https://github.com/fullstackreact/google-maps-react
