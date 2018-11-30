@@ -17,12 +17,16 @@
 * Fully responsive design
 * PWA offline usage with service workers
 
-## Usage
-
+## How to run the app in development mode
 * Clone the repo
 * `npm install`
 * `npm start`
 * Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## How to run the app in production mode
+* `serve -s build`
+* `npm run serve`
+* Open [http://localhost:5000](http://localhost:3000) to view it in the browser.
 
 ## Credits
 * Project Coach [Doug Brown](https://github.com/thefinitemonkey/fend-maps-walkthrough)
