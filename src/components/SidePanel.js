@@ -53,10 +53,12 @@ export default class SidePanel extends Component {
               onChange={e => this.updateQuery(e.target.value)}
               value={this.state.query}
             />
-            <ul style={this.styles.noBullets}>
+            <ul style={this.styles.noBullets}
+              aria-label="list of locations"
+            >
               {this.props.locations && this.props.locations.map((eachLoc, index) => {
                 return (
-                  <li style={this.styles.listItem} key={index}>
+                  <li style={this.styles.listItem} key={index} role="button">
                     <button style={this.styles.listLink} key={index}
                       onClick={e => this.props.clickListItem(index)}>{eachLoc.name}</button>
                   </li>
