@@ -1,4 +1,5 @@
-# Udacity Final Project (React): Google Maps API and Foursquare API
+# Udacity Final Project (React)
+## Google Maps API and Foursquare API
 
 ### [See Demo](https://react-google-maps.netlify.com/)
 
