@@ -48,7 +48,7 @@ export default class SidePanel extends Component {
 	    <input
 	      style={this.styles.filterEntry}
 	      type="text"
-	      placefolder="filter list"
+	      placeholder="search related places..."
 	      name="filter"
 	      onChange={e => this.updateQuery(e.target.value)}
 	      value={this.state.query}
