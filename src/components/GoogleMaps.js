@@ -33,9 +33,12 @@ export class MapDisplay extends Component {
       (this.state.markers[props.selectedIndex] !== this.state.activeMarker))) {
       this.closeInfoWindow();
     }
-    if (props.selectedIndex === null) {
+    // if nothing is selected, don't do anything
+    if (props.selectedIndex === null || typeof(props.selectedIndex) === "undefined") {
       return;
     };
+
+    this.onMarkerClicked(this.state.markerProps[props.selectedIndex], this.state.markers[props.selectedIndex]);
   }
 
   onMapReady = (props, map) => {
