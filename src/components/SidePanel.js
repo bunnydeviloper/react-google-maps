@@ -40,6 +40,29 @@ export default class SidePanel extends Component {
   }
 
   render() {
-    return ( <h1>Hello from Side Panel</h1>)
+    return (
+      <div>
+	<Drawer open={this.props.open} onClose={this.props.toggleSidePanel}>
+	  <div style={this.styles.list}>
+	    <input
+	      style={this.styles.filterEntry}
+	      type="text"
+	      placefolder="filter list"
+	      name="filter"
+	      onChange={e => this.updateQuery(e.target.value)}
+	      value={this.state.query}
+	    />
+	    <ul style={this.styles.noBullets}>
+	      {this.props.locations && this.props.locations.map((eachLoc, index) => {
+	        return (
+		  <li style={this.styles.listItem} key={index}>
+		    <button style={this.styles.listLink} key={index}>{eachLoc.name}</button>
+		  </li>)
+	      })}
+	    </ul>
+	  </div>
+	</Drawer>
+      </div>
+    )
   }
 }
