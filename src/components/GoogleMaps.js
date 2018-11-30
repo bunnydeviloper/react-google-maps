@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Map, InfoWindow,  GoogleApiWrapper } from 'google-maps-react';
+import NoMapDisplay from './NoMapDisplay';
 
 const MAP_KEY = "AIzaSyCzZvujlnTYKZGkoiQTbFV1Ghr7yM14IEA";
 const FS_VERSION = "20181128";
@@ -183,6 +184,6 @@ export class MapDisplay extends Component {
   }
 }
 
-export default GoogleApiWrapper({ apiKey: MAP_KEY })(MapDisplay)
+export default GoogleApiWrapper({ apiKey: MAP_KEY, LoadingContainer: NoMapDisplay })(MapDisplay)
 
 // credit: https://github.com/fullstackreact/google-maps-react
