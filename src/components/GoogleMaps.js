@@ -17,7 +17,13 @@ export class MapDisplay extends Component {
     showingInfoWindow: false
   }
 
-  componentDidMount = () => {}
+  gm_authFailure() {
+    window.alert("Google Maps authentication failed! Please check your API key.");
+  }
+
+  componentDidMount = () => {
+    window.gm_authFailure = () => this.gm_authFailure();
+  }
 
   componentWillReceiveProps = (props) => {
     this.setState({ firstDrop: false });
