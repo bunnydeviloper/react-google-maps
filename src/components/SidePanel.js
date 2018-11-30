@@ -46,6 +46,7 @@ export default class SidePanel extends Component {
         <Drawer open={this.props.open} onClose={this.props.toggleSidePanel}>
           <div style={this.styles.list}>
             <input
+	      aria-label="search"
               style={this.styles.filterEntry}
               type="text"
               placeholder="search related places..."
@@ -58,7 +59,7 @@ export default class SidePanel extends Component {
             >
               {this.props.locations && this.props.locations.map((eachLoc, index) => {
                 return (
-                  <li style={this.styles.listItem} key={index} role="button">
+                  <li style={this.styles.listItem} key={index}>
                     <button style={this.styles.listLink} key={index}
                       onClick={e => this.props.clickListItem(index)}>{eachLoc.name}</button>
                   </li>
