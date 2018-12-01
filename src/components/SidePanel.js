@@ -42,11 +42,11 @@ export default class SidePanel extends Component {
 
   render() {
     return (
-      <div>
+      <aside>
         <Drawer open={this.props.open} onClose={this.props.toggleSidePanel}>
           <div style={this.styles.list}>
             <input
-	      aria-label="search"
+              aria-label="search"
               style={this.styles.filterEntry}
               type="text"
               placeholder="search related places..."
@@ -68,7 +68,7 @@ export default class SidePanel extends Component {
             </ul>
           </div>
         </Drawer>
-      </div>
+      </aside>
     )
   }
 }

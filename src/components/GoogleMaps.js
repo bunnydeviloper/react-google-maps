@@ -23,7 +23,7 @@ export class MapDisplay extends Component {
 
   componentDidMount = () => {
     window.addEventListener("unhandledrejection", function (event) {
-      console.log(event.reason);
+      window.alert(event.reason);
       event.preventDefault();
     })
     window.gm_authFailure = () => this.gm_authFailure();
@@ -117,12 +117,12 @@ export class MapDisplay extends Component {
             ${FS_CLIENT_ID}&client_secret=${FS_SECRET}&v=${FS_VERSION}`;
           fetch(url)
             .then(response => {
-	      if (response.status === 200) return response.json();
-	      else return { error: 'There was an error with FourSquare photos request.'};
-	      })
+              if (response.status === 200) return response.json();
+              else return { error: 'There was an error with FourSquare photos request.'};
+            })
             .then(result => {
-	      if (result.error) window.alert(result.error);
-	      else {
+              if (result.error) window.alert(result.error);
+              else {
                 activeMarkerProps = {
                   ...activeMarkerProps,
                   images: result.response.photos
@@ -133,18 +133,18 @@ export class MapDisplay extends Component {
                 // const img = "https://3.bp.blogspot.com/-S9XfyKnuKms/WNnrWwV-YZI/AAAAAAAADUs/L3m49TTbPYElBrBSbj4wXxv0sSazxtbggCLcB/s1600/sticker1.png";
                 // activeMarkerProps.icon = img;
                 this.setState({ showingInfoWindow: true, activeMarker: marker, activeMarkerProps });
-	      }
+              }
             })
-	    .catch(error => {
-	      window.alert(error);
-	    });
+            .catch(error => {
+              window.alert(error);
+            });
         } else {
           marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
           this.setState({ showingInfoWindow: true, activeMarker: marker, activeMarkerProps });
         }
       })
       .catch(error => {
-	window.alert(error + '. Please check Foursquare authentication.');
+        window.alert(error + '. Please check Foursquare authentication.');
       });
   }
 

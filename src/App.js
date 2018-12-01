@@ -62,7 +62,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <main className="App">
         <header>
           <button onClick={this.toggleSidePanel} style={this.styles.menuButton} aria-label="toggle side panel">
             <i className="fa fa-bars"></i>
@@ -78,14 +78,14 @@ class App extends Component {
           clickListItem={this.clickListItem}
         />
 
-        <SidePanel
-          locations={this.state.filtered}
-          open={this.state.open}
-          toggleSidePanel={this.toggleSidePanel}
-          onChangeNewQuery={this.updateQuery}
-          clickListItem={this.clickListItem}
-        />
-      </div>
+      <SidePanel
+        locations={this.state.filtered}
+        open={this.state.open}
+        toggleSidePanel={this.toggleSidePanel}
+        onChangeNewQuery={this.updateQuery}
+        clickListItem={this.clickListItem}
+      />
+    </main>
     );
   }
 }
