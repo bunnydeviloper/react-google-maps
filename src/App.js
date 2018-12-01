@@ -77,6 +77,7 @@ class App extends Component {
           selectedIndex={this.state.selectedIndex}
           clickListItem={this.clickListItem}
         />
+
         <SidePanel
           locations={this.state.filtered}
           open={this.state.open}
